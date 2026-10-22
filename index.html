@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#1f1a15">
+    <title>Flat 501 — A provisional digital twin</title>
+    <meta
+      name="description"
+      content="An interactive, video-derived digital twin of Flat 501. Explore a provisional 3D reconstruction, synchronized floor plan and evidence-led room notes."
+    >
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+    <link rel="preload" as="image" href="./assets/images/poster-bedroom.jpg">
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/layout.css">
+    <link rel="stylesheet" href="./css/components.css">
+    <link rel="stylesheet" href="./css/responsive.css">
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "./vendor/three/three.module.js"
+        }
+      }
+    </script>
+    <script type="module" src="./js/app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header" id="site-header">
+      <a class="brand" href="#top" aria-label="Flat 501 home">
+        <span class="brand__mark">501</span>
+        <span class="brand__text">
+          <span>Flat 501</span>
+          <small>Spatial study</small>
+        </span>
+      </a>
+      <button
+        class="nav-toggle"
+        id="nav-toggle"
+        type="button"
+        aria-controls="primary-nav"
+        aria-expanded="false"
+      >
+        <span class="nav-toggle__lines" aria-hidden="true"></span>
+        <span class="sr-only">Menu</span>
+      </button>
+      <nav class="site-nav" id="primary-nav" aria-label="Primary">
+        <a href="#explore">Explore</a>
+        <a href="#plan">Plan</a>
+        <a href="#walkthrough">Walkthrough</a>
+        <a href="#evidence">Evidence</a>
+        <a class="site-nav__cta" href="#walkthrough">
+          <span>Watch the flat</span>
+          <span aria-hidden="true">↘</span>
+        </a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <div class="hero__visual">
+          <img
+            class="hero__image"
+            src="./assets/images/poster-bedroom.jpg"
+            alt="Evening view of the Flat 501 bedroom with a blue daybed, grey curtains and a guitar."
+            width="768"
+            height="1366"
+          >
+          <div class="hero__veil" aria-hidden="true"></div>
+          <div class="hero__frame-note">
+            <span class="hero__frame-dot" aria-hidden="true"></span>
+            <span>Reference frame<br><strong>00:12 · Bedroom</strong></span>
+          </div>
+          <p class="hero__vertical">Video-derived · Not a survey</p>
+        </div>
+
+        <div class="hero__content">
+          <p class="eyebrow"><span>01</span> A small spatial study</p>
+          <h1 id="hero-title">Flat <em>501</em></h1>
+          <p class="hero__tagline">
+            A compact one-bedroom, rebuilt from a 23-second walkthrough — with every certainty and every unknown left visible.
+          </p>
+          <p class="hero__intro">
+            The entrance opens into the living hall. A narrow far zone, an open wash alcove and a separate bedroom follow. Beyond the bedroom curtains, a white-framed safety mesh closes the utility balcony. This digital twin brings those fragments into one explorable whole.
+          </p>
+          <div class="hero__actions">
+            <a class="button button--solid" href="#explore">
+              <span>Enter the model</span>
+              <span aria-hidden="true">→</span>
+            </a>
+            <a class="button button--ghost" href="#walkthrough">
+              <span class="button__play" aria-hidden="true"></span>
+              <span>Play the source</span>
+            </a>
+          </div>
+          <dl class="hero__facts" aria-label="Property summary">
+            <div>
+              <dt>Layout</dt>
+              <dd>1 bed + balcony</dd>
+            </div>
+            <div>
+              <dt>Reported area</dt>
+              <dd>400 sq ft</dd>
+            </div>
+            <div>
+              <dt>Evidence</dt>
+              <dd>23.2 s video</dd>
+            </div>
+            <div>
+              <dt>Geometry</dt>
+              <dd class="is-warning">Provisional</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="hero__proof" aria-label="Evidence summary">
+          <span class="hero__proof-label">Established</span>
+          <p>Separate bedroom &amp; balcony opening</p>
+          <span class="hero__proof-rule" aria-hidden="true"></span>
+          <span class="hero__proof-label">Left open</span>
+          <p>Far-zone function &amp; all dimensions</p>
+        </div>
+      </section>
+
+      <section class="confidence-strip" aria-label="Reading this digital twin">
+        <p class="confidence-strip__lead">How to read this model</p>
+        <ul>
+          <li>
+            <span class="status-dot status-dot--confirmed" aria-hidden="true"></span>
+            <strong>Confirmed</strong> — seen in the footage
+          </li>
+          <li>
+            <span class="status-dot status-dot--inferred" aria-hidden="true"></span>
+            <strong>Inferred</strong> — a reasoned interpretation
+          </li>
+          <li>
+            <span class="status-dot status-dot--unknown" aria-hidden="true"></span>
+            <strong>Unknown</strong> — deliberately unresolved
+          </li>
+          <li>
+            <span class="status-dot status-dot--provisional" aria-hidden="true"></span>
+            <strong>Provisional</strong> — modelled, not measured
+          </li>
+        </ul>
+      </section>
+
+      <section class="section twin-section" id="explore" aria-labelledby="explore-title">
+        <header class="section-heading reveal">
+          <div>
+            <p class="eyebrow"><span>02</span> Explore the model</p>
+            <h2 id="explore-title">A flat you can turn over.</h2>
+          </div>
+          <div class="section-heading__aside">
+            <p>
+              Orbit the reconstruction, step inside the entrance hall, or read it from above. Selecting one room keeps the 3D view, floor plan and dossier in step.
+            </p>
+            <p class="model-stamp">
+              <span class="model-stamp__pulse" aria-hidden="true"></span>
+              Visual reconstruction · scale uncalibrated
+            </p>
+          </div>
+        </header>
+
+        <div class="twin-layout">
+          <div class="viewer-card reveal">
+            <div class="viewer-card__bar">
+              <div class="viewer-status">
+                <span class="viewer-status__dot" aria-hidden="true"></span>
+                <span id="viewer-status-label">Preparing the model</span>
+              </div>
+              <div class="view-toolbar" role="group" aria-label="Camera views">
+                <button class="view-button is-active" type="button" data-view="perspective">Perspective</button>
+                <button class="view-button" type="button" data-view="cutaway">Cutaway</button>
+                <button class="view-button" type="button" data-view="interior">Interior</button>
+                <button class="view-button" type="button" data-view="plan">Plan</button>
+                <span class="view-toolbar__rule" aria-hidden="true"></span>
+                <button class="icon-button" id="reset-view" type="button" title="Reset camera" aria-label="Reset camera">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M4 10a8 8 0 1 1 2.3 6.7M4 4v6h6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+                <button class="icon-button" id="fullscreen-viewer" type="button" title="Fullscreen" aria-label="View 3D model in fullscreen">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="viewer" id="viewer">
+              <div class="viewer__loader" id="viewer-loader" role="status">
+                <div class="loader-mark" aria-hidden="true">
+                  <span></span><span></span><span></span>
+                </div>
+                <p>Assembling the flat</p>
+                <small>Building a provisional model from the walkthrough</small>
+              </div>
+              <div class="viewer__fallback" id="viewer-fallback" hidden>
+                <span class="viewer__fallback-mark" aria-hidden="true">3D</span>
+                <h3>The interactive model is unavailable.</h3>
+                <p>
+                  This browser could not start WebGL. The synchronized plan, room notes and source walkthrough below remain fully available.
+                </p>
+                <a class="button button--ghost" href="#plan">Open the floor plan</a>
+              </div>
+              <div class="viewer__caption" aria-hidden="true">
+                <span>Drag to orbit</span>
+                <span>Scroll to zoom</span>
+                <span>Right-drag to pan</span>
+              </div>
+            </div>
+
+            <div class="viewer-card__footer">
+              <p>
+                <strong>Not a measured model.</strong> Walls, openings and furniture are estimated from the video. The far-zone function and the room beyond the closed white door remain unknown.
+              </p>
+              <div class="viewer-legend" aria-label="Model status legend">
+                <span><i class="status-dot status-dot--confirmed"></i>Confirmed</span>
+                <span><i class="status-dot status-dot--inferred"></i>Inferred</span>
+                <span><i class="status-dot status-dot--provisional"></i>Provisional</span>
+              </div>
+            </div>
+          </div>
+
+          <aside class="twin-aside reveal" aria-label="Room index">
+            <div class="room-index">
+              <div class="room-index__head">
+                <div>
+                  <span class="micro-label">Room index</span>
+                  <h3>Six spaces</h3>
+                </div>
+                <button class="text-button" id="clear-room" type="button" hidden>Clear</button>
+              </div>
+              <div class="room-list" id="room-list"></div>
+            </div>
+            <div class="aside-note">
+              <span class="aside-note__index">N</span>
+              <p>
+                Orientation is diagrammatic. The footage does not establish a reliable compass direction, and the plan is not to scale.
+              </p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section plan-section" id="plan" aria-labelledby="plan-title">
+        <header class="section-heading reveal">
+          <div>
+            <p class="eyebrow"><span>03</span> Plan &amp; dossier</p>
+            <h2 id="plan-title">The flat, drawn out.</h2>
+          </div>
+          <div class="section-heading__aside">
+            <p>
+              The plan is generated from the same records as the 3D model. Room shapes, openings and furniture are provisional; confidence labels describe what the footage supports.
+            </p>
+          </div>
+        </header>
+
+        <div class="plan-layout">
+          <div class="plan-card reveal">
+            <div class="plan-card__head">
+              <div>
+                <span class="micro-label">Schematic plan</span>
+                <h3>Provisional layout · Level 05</h3>
+              </div>
+              <div class="north-mark" aria-label="Diagrammatic north indicator">
+                <span>N</span>
+                <i aria-hidden="true"></i>
+              </div>
+            </div>
+            <p class="plan-scroll-hint">Scroll the plan sideways to see every room <span aria-hidden="true">→</span></p>
+            <div class="plan-stage">
+              <svg
+                class="floorplan"
+                id="floorplan"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-describedby="plan-note"
+              ></svg>
+            </div>
+            <div class="plan-card__foot">
+              <div class="plan-legend" aria-label="Plan legend">
+                <span><i class="legend-line legend-line--exterior"></i>Exterior wall</span>
+                <span><i class="legend-line legend-line--interior"></i>Interior wall</span>
+                <span><i class="legend-line legend-line--door"></i>Door</span>
+                <span><i class="legend-line legend-line--glazing"></i>Glazing / mesh</span>
+              </div>
+              <p id="plan-note">Not to scale · all dimensions provisional</p>
+            </div>
+          </div>
+
+          <aside class="dossier reveal" id="room-dossier" aria-live="polite" aria-atomic="true"></aside>
+        </div>
+      </section>
+
+      <section class="section walkthrough-section" id="walkthrough" aria-labelledby="walkthrough-title">
+        <header class="section-heading reveal">
+          <div>
+            <p class="eyebrow"><span>04</span> Source material</p>
+            <h2 id="walkthrough-title">See what the model saw.</h2>
+          </div>
+          <div class="section-heading__aside">
+            <p>
+              The original walkthrough is embedded unchanged. Chapter markers jump to the rooms and details used in the reconstruction.
+            </p>
+            <p class="video-spec">H.264 · 512 × 910 · 23.2 seconds · AAC</p>
+          </div>
+        </header>
+
+        <div class="walkthrough-layout">
+          <div class="video-card reveal">
+            <div class="video-card__frame">
+              <video
+                id="reference-video"
+                controls
+                playsinline
+                preload="metadata"
+                poster="./assets/images/poster-bedroom.jpg"
+              >
+                <source src="./assets/video/reference-flat-501.mp4" type="video/mp4">
+                Your browser cannot play this MP4. The source file is available at
+                <a href="./assets/video/reference-flat-501.mp4">assets/video/reference-flat-501.mp4</a>.
+              </video>
+              <span class="video-card__badge">Original footage</span>
+            </div>
+            <div class="video-card__meta">
+              <div>
+                <span class="micro-label">Property</span>
+                <p>Flat 501 · supplied walkthrough</p>
+              </div>
+              <div>
+                <span class="micro-label">Use</span>
+                <p>Evidence, not decoration</p>
+              </div>
+              <a class="text-link" href="./assets/video/reference-flat-501.mp4" download>
+                Download source <span aria-hidden="true">↓</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="chapters reveal">
+            <div class="chapters__head">
+              <span class="micro-label">Timeline</span>
+              <h3>What appears when</h3>
+            </div>
+            <div class="chapter-list" id="chapter-list"></div>
+            <p class="chapters__note">
+              Timestamps refer to the supplied 23.2-second file. The camera is hand-held and the sequence is continuous.
+            </p>
+          </div>
+        </div>
+
+        <div class="frames reveal">
+          <div class="frames__head">
+            <div>
+              <span class="micro-label">Reference stills</span>
+              <h3>Five frames that anchor the model</h3>
+            </div>
+            <p>Select a frame to inspect it larger.</p>
+          </div>
+          <div class="frame-grid" id="reference-frames"></div>
+        </div>
+      </section>
+
+      <section class="section evidence-section" id="evidence" aria-labelledby="evidence-title">
+        <header class="section-heading reveal">
+          <div>
+            <p class="eyebrow"><span>05</span> Evidence register</p>
+            <h2 id="evidence-title">What is known. What is not.</h2>
+          </div>
+          <div class="section-heading__aside">
+            <p>
+              Every major feature is linked to a moment in the walkthrough. Inferences are labelled as inferences; unknowns are not filled in for visual convenience.
+            </p>
+          </div>
+        </header>
+
+        <div class="confidence-grid reveal" id="confidence-grid"></div>
+
+        <div class="evidence-layout">
+          <div class="evidence-panel reveal">
+            <div class="evidence-panel__head">
+              <div>
+                <span class="micro-label">Observation log</span>
+                <h3>Feature evidence</h3>
+              </div>
+              <span class="evidence-count" id="evidence-count">0 entries</span>
+            </div>
+            <div class="evidence-list" id="evidence-list"></div>
+          </div>
+
+          <aside class="method-panel reveal">
+            <span class="micro-label">Method &amp; limits</span>
+            <h3>Built from a walkthrough, not a survey.</h3>
+            <p>
+              No floor plan, dimensions or camera tracking were supplied. The model uses a visual reconstruction of a 23.2-second, 512 × 910 hand-held video. Its 8.0 × 5.2 m envelope is a planning assumption.
+            </p>
+            <ul>
+              <li>No photogrammetry or LiDAR</li>
+              <li>No verified wall, opening or ceiling dimensions</li>
+              <li>No compass orientation established</li>
+              <li>Far-zone function intentionally unresolved</li>
+            </ul>
+            <div class="method-panel__foot">
+              <p>
+                The reported 400 sq ft figure is owner-supplied and was not used to derive the model.
+              </p>
+              <a class="text-link" href="./docs/assumptions.md">Read the assumptions <span aria-hidden="true">→</span></a>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="site-footer__brand">
+        <span class="brand__mark brand__mark--footer">501</span>
+        <div>
+          <p>Flat 501</p>
+          <span>An evidence-led spatial study</span>
+        </div>
+      </div>
+      <p class="site-footer__note">
+        An independent visual reconstruction. Not a measured survey, valuation or marketing plan. All geometry is provisional.
+      </p>
+      <nav class="site-footer__nav" aria-label="Footer">
+        <a href="#explore">3D model</a>
+        <a href="#plan">Floor plan</a>
+        <a href="#walkthrough">Source video</a>
+        <a href="./docs/evidence.md">Evidence notes</a>
+      </nav>
+      <p class="site-footer__meta">
+        <span>Built with vanilla HTML, CSS &amp; Three.js</span>
+        <span id="footer-year"></span>
+      </p>
+    </footer>
+
+    <dialog class="lightbox" id="frame-dialog" aria-labelledby="dialog-title">
+      <div class="lightbox__inner">
+        <button class="lightbox__close" id="dialog-close" type="button" aria-label="Close frame">
+          <span aria-hidden="true">×</span>
+        </button>
+        <div class="lightbox__media">
+          <img id="dialog-image" alt="">
+        </div>
+        <div class="lightbox__copy">
+          <span class="micro-label" id="dialog-time"></span>
+          <h3 id="dialog-title"></h3>
+          <p id="dialog-caption"></p>
+          <span class="lightbox__source">Reference frame from the supplied walkthrough</span>
+        </div>
+      </div>
+    </dialog>
+
+    <noscript>
+      <div class="noscript-banner">
+        JavaScript is required for the 3D model and interactive plan. The reference video remains available in
+        <a href="./assets/video/reference-flat-501.mp4">the source file</a>.
+      </div>
+    </noscript>
+  </body>
+</html>
